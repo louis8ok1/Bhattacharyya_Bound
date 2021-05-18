@@ -12,7 +12,7 @@ col,row = 50,50
 
 array1 = np.zeros((col,1))
 array2 = np.zeros((col,1))
-def cal_CovrianceMatrix(var):
+def cal_CovarianceMatrix(var):
     arrayA = np.zeros((col,row))
     for i in range(col):
         for j in range(row):
@@ -26,9 +26,7 @@ def cal_BhattacharyyaDistance(m1,m2,covMatrix1,covMatrix2):
         array1[i] = m1
     for i in range(col):
         array2[i] = m2
-    """
-    np.transpose(x2_mean-x1_mean).dot( np.transpose((cov1-cov2)/2) ).dot( x2_mean-x1_mean )/8
-    """
+
     meanDiff = ((1/8) * (array2- array1).T.dot(np.linalg.inv(0.5*(covMatrix1+covMatrix2)))).dot( array2- array1)
     print("mean difference :",meanDiff[0][0])
     temp  = np.linalg.det(covMatrix1)*np.linalg.det(covMatrix2)
@@ -53,9 +51,10 @@ if __name__ == '__main__':
     p1,p2 = 0.5,0.5
     s = 0.5
     #CovMatrix
-    covMatrix1 = cal_CovrianceMatrix(var1)
-    covMatrix2 = cal_CovrianceMatrix(var2)
-    
+    covMatrix1 = cal_CovarianceMatrix(var1)
+    covMatrix2 = cal_CovarianceMatrix(var2)
+    print(covMatrix1)
+    print(covMatrix2)
     
     
     #Carculate Bhawttacharyya Bound
